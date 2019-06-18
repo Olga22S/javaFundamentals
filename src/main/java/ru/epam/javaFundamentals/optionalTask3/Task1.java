@@ -1,4 +1,4 @@
-package optionalTask3;
+package ru.epam.javaFundamentals.optionalTask3;
 
 import java.time.Month;
 import java.util.Scanner;
