@@ -9,10 +9,10 @@ public class Task4 {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter matrix size: ");
 		int matrixSize = scanner.nextInt();
-		int[][] matrix = getMatrix(matrixSize);	
+		int[][] matrix = getMatrix(matrixSize);
 		int maxMatrixNumber = 0;
 		int rowMaxNumber = 0;
-		int columnMaxNumber = 0;	
+		int columnMaxNumber = 0;
 		for (int i = 0; i < matrixSize; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
 				if (maxMatrixNumber <= matrix[i][j]) {
@@ -21,13 +21,13 @@ public class Task4 {
 					columnMaxNumber = j;
 				}
 			}
-		}	
+		}
 		int[][] newMatrix = getMatrixWithoutMaxNumberRowAndColumn(matrix, rowMaxNumber, columnMaxNumber);
 		printMatrix(matrix);
-		System.out.println("\nMaximum number in matrix: " + maxMatrixNumber);			
-		printMatrix(newMatrix);	
+		System.out.println("\nMaximum number in matrix: " + maxMatrixNumber);
+		printMatrix(newMatrix);
 	}
-	
+
 	private static void printMatrix(int[][] matrix) {
 		for (int i = 0; i < matrix.length; i++) {
 			System.out.println();
@@ -36,8 +36,8 @@ public class Task4 {
 			}
 		}
 	}
-	
-	private static int[][] getMatrix(int matrixSize){
+
+	private static int[][] getMatrix(int matrixSize) {
 		Random random = new Random();
 		int[][] matrix = new int[matrixSize][matrixSize];
 		int min = -'M';
@@ -49,7 +49,8 @@ public class Task4 {
 		}
 		return matrix;
 	}
-	private static int[][] getMatrixWithoutMaxNumberRowAndColumn(int[][] matrix, int row, int column){
+
+	private static int[][] getMatrixWithoutMaxNumberRowAndColumn(int[][] matrix, int row, int column) {
 		int new_row = 0;
 		int new_column = 0;
 		int matrixSize = matrix.length;
@@ -67,7 +68,7 @@ public class Task4 {
 				new_column = 0;
 				new_row++;
 			}
-		}	
+		}
 		return newMatrix;
 	}
 }
