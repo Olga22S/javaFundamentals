@@ -6,13 +6,13 @@ import java.util.*;
 
 public class Order {
 
-	private final int orderNumber;
+	private final int ORDER_NUMBER;
 	private int clientNumber;
 	private List<Pizza> pizzas;
 	private LocalTime orderTime;
 
 	public Order(int clientNumber) {
-		orderNumber = new Random().ints(1, 10000, 99999 + 1).findFirst().getAsInt();
+		ORDER_NUMBER = new Random().ints(1, 10000, 99999 + 1).findFirst().getAsInt();
 		this.clientNumber = clientNumber;
 		pizzas = new ArrayList<>();
 		orderTime = LocalTime.now();
@@ -38,11 +38,11 @@ public class Order {
 	}
 
 	public String getPizzAttributes(Pizza pizza) {
-		return "[" + orderNumber + ":" + clientNumber + ":" + pizza.getName() + ":" + pizza.getQuantity() + "]";
+		return "[" + ORDER_NUMBER + ":" + clientNumber + ":" + pizza.getName() + ":" + pizza.getQuantity() + "]";
 	}
 
 	public int getOrderNumber() {
-		return orderNumber;
+		return ORDER_NUMBER;
 	}
 
 	public void setClientNumber(int clientNumber) {
@@ -61,7 +61,7 @@ public class Order {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + orderNumber;
+		result = prime * result + ORDER_NUMBER;
 		return result;
 	}
 
@@ -77,7 +77,7 @@ public class Order {
 			return false;
 		}
 		Order other = (Order) obj;
-		if (orderNumber != other.orderNumber) {
+		if (ORDER_NUMBER != other.ORDER_NUMBER) {
 			return false;
 		}
 		return true;
@@ -100,7 +100,7 @@ public class Order {
 
 	private String getOrderInfo() {
 		StringBuilder formattedResult = new StringBuilder();
-		formattedResult.append(String.format("%s%n%s%n", "Заказ: " + orderNumber, "Клиент: " + clientNumber));
+		formattedResult.append(String.format("%s%n%s%n", "Заказ: " + ORDER_NUMBER, "Клиент: " + clientNumber));
 		for (Pizza pizza : pizzas) {
 			formattedResult.append(String.format("%s%n", "Название: " + pizza.getName()));
 			formattedResult.append("-".repeat(30) + System.lineSeparator());
