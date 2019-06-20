@@ -19,7 +19,7 @@ public class Order {
 	}
 
 	public void addPizza(Pizza pizza) {
-		if (getPizzaNumberInOrger() + pizza.getQuantity() >= 10) {
+		if (getPizzaQuantityInOrger() + pizza.getQuantity() >= 10) {
 			System.out.println("It isn't possible to order more than 10 pizzas!");
 		} else {
 			if (pizza.getName().length() < 4 || pizza.getName().length() > 20) {
@@ -29,22 +29,16 @@ public class Order {
 		}
 	}
 
-	private int getPizzaNumberInOrger() {
-		return pizzas.stream().mapToInt(p -> p.getQuantity()).sum();
-	}
-
-	private String getClientPizzaName() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Choose your pizza name: ");
-		return scanner.next() + "_" + (pizzas.size() + 1);
-	}
-
 	public void changePizzaQuantity(Pizza pizza, int quantity) {
-		if (getPizzaNumberInOrger() + quantity >= 10) {
+		if (getPizzaQuantityInOrger() - pizza.getQuantity() + quantity >= 10) {
 			System.out.println("It isn't possible to order more than 10 pizzas!");
 		} else {
-			pizzas.stream().filter(s -> s.equals(pizza)).forEach(s -> s.setQuantity(quantity));
+			pizzas.stream().filter(p -> p.equals(pizza)).forEach(p -> p.setQuantity(quantity));
 		}
+	}
+
+	public String getPizzAttributes(Pizza pizza) {
+		return "[" + orderNumber + ":" + clientNumber + ":" + pizza.getName() + ":" + pizza.getQuantity() + "]";
 	}
 
 	public int getOrderNumber() {
@@ -89,8 +83,19 @@ public class Order {
 		return true;
 	}
 
-	public double getTotalPrice() {
-		return pizzas.stream().mapToDouble(p -> p.getPizzaPrice() * p.getQuantity()).sum();
+	@Override
+	public String toString() {
+		return "*".repeat(30) + System.lineSeparator() + getOrderInfo() + "*".repeat(30);
+	}
+
+	private int getPizzaQuantityInOrger() {
+		return pizzas.stream().mapToInt(p -> p.getQuantity()).sum();
+	}
+
+	private String getClientPizzaName() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Choose your pizza name: ");
+		return scanner.next() + "_" + (pizzas.size() + 1);
 	}
 
 	private String getOrderInfo() {
@@ -115,8 +120,7 @@ public class Order {
 		return formattedResult.toString();
 	}
 
-	@Override
-	public String toString() {
-		return "*".repeat(30) + System.lineSeparator() + getOrderInfo() + "*".repeat(30);
+	private double getTotalPrice() {
+		return pizzas.stream().mapToDouble(p -> p.getPizzaPrice() * p.getQuantity()).sum();
 	}
 }

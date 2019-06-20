@@ -9,15 +9,11 @@ public class Pizza {
 	private List<Ingredient> ingredients;
 	private PizzaType pizzaType;
 	private int quantity;
-	private final int orderNumber;
-	private int clientNumber;
 
-	public Pizza(int orderNumber, int clientNumber, String name, PizzaType pizzaType, int quantity) {
+	public Pizza(String name, PizzaType pizzaType, int quantity) {
 		this.name = name;
 		this.pizzaType = pizzaType;
 		this.quantity = quantity;
-		this.orderNumber = orderNumber;
-		this.clientNumber = clientNumber;
 		ingredients = new ArrayList<>();
 	}
 
@@ -63,24 +59,11 @@ public class Pizza {
 		this.quantity = quantity;
 	}
 
-	public int getOrderNumber() {
-		return orderNumber;
-	}
-
-	public int getClientNumber() {
-		return clientNumber;
-	}
-
-	public void setClientNumber(int clientNumber) {
-		this.clientNumber = clientNumber;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + orderNumber;
 		return result;
 	}
 
@@ -103,14 +86,12 @@ public class Pizza {
 		} else if (!name.equals(other.name)) {
 			return false;
 		}
-		if (orderNumber != other.orderNumber) {
-			return false;
-		}
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return orderNumber + " : " + clientNumber + " : " + name + " : " + quantity;
+		return "Pizza name: " + name + ", ingredients: " + ingredients + ", pizzaType: " + pizzaType + ", quantity: "
+				+ quantity;
 	}
 }
