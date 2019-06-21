@@ -8,13 +8,13 @@ public class Order {
 
 	private final int ORDER_NUMBER;
 	private int clientNumber;
-	private List<Pizza> pizzas;
+	private Pizza[] pizzas;
 	private LocalTime orderTime;
 
 	public Order(int clientNumber) {
 		ORDER_NUMBER = new Random().ints(1, 10000, 99999 + 1).findFirst().getAsInt();
 		this.clientNumber = clientNumber;
-		pizzas = new ArrayList<>();
+		pizzas = new Pizza[] {};
 		orderTime = LocalTime.now();
 	}
 
@@ -25,7 +25,8 @@ public class Order {
 			if (pizza.getName().length() < 4 || pizza.getName().length() > 20) {
 				pizza.setName(getClientPizzaName());
 			}
-			pizzas.add(pizza);
+			pizzas = Arrays.copyOf(pizzas, pizzas.length + 1);
+			pizzas[pizzas.length - 1] = pizza;
 		}
 	}
 
@@ -33,7 +34,7 @@ public class Order {
 		if (getPizzaQuantityInOrger() - pizza.getQuantity() + quantity >= 10) {
 			System.out.println("It isn't possible to order more than 10 pizzas!");
 		} else {
-			pizzas.stream().filter(p -> p.equals(pizza)).forEach(p -> p.setQuantity(quantity));
+			Arrays.stream(pizzas).filter(p -> p.equals(pizza)).forEach(p -> p.setQuantity(quantity));
 		}
 	}
 
@@ -53,7 +54,7 @@ public class Order {
 		return clientNumber;
 	}
 
-	public List<Pizza> getPizzas() {
+	public Pizza[] getPizzas() {
 		return pizzas;
 	}
 
@@ -89,13 +90,13 @@ public class Order {
 	}
 
 	private int getPizzaQuantityInOrger() {
-		return pizzas.stream().mapToInt(p -> p.getQuantity()).sum();
+		return Arrays.stream(pizzas).mapToInt(p -> p.getQuantity()).sum();
 	}
 
 	private String getClientPizzaName() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Choose your pizza name: ");
-		return scanner.next() + "_" + (pizzas.size() + 1);
+		return scanner.next() + "_" + (pizzas.length + 1);
 	}
 
 	private String getOrderInfo() {
@@ -121,6 +122,6 @@ public class Order {
 	}
 
 	private double getTotalPrice() {
-		return pizzas.stream().mapToDouble(p -> p.getPizzaPrice() * p.getQuantity()).sum();
+		return Arrays.stream(pizzas).mapToDouble(p -> p.getPizzaPrice() * p.getQuantity()).sum();
 	}
 }

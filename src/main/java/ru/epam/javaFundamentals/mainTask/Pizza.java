@@ -1,12 +1,11 @@
 package ru.epam.javaFundamentals.mainTask;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class Pizza {
 
 	private String name;
-	private List<Ingredient> ingredients;
+	private Ingredient[] ingredients;
 	private PizzaType pizzaType;
 	private int quantity;
 
@@ -14,21 +13,22 @@ public class Pizza {
 		this.name = name;
 		this.pizzaType = pizzaType;
 		this.quantity = quantity;
-		ingredients = new ArrayList<>();
+		ingredients = new Ingredient[] {};
 	}
 
 	public void addIngredient(Ingredient ingredient) {
-		if (ingredients.size() == 7) {
+		if (ingredients.length == 7) {
 			System.out.println("Pizza is full!");
-		} else if (ingredients.contains(ingredient)) {
+		} else if (Arrays.asList(ingredients).contains(ingredient)) {
 			System.out.println("This ingredient was added! Check your order!");
 		} else {
-			ingredients.add(ingredient);
+			ingredients = Arrays.copyOf(ingredients, ingredients.length + 1);
+			ingredients[ingredients.length - 1] = ingredient;
 		}
 	}
 
 	public double getPizzaPrice() {
-		return ingredients.stream().mapToDouble(i -> i.getPrice()).sum() + pizzaType.getPrice();
+		return Arrays.stream(ingredients).mapToDouble(i -> i.getPrice()).sum() + pizzaType.getPrice();
 	}
 
 	public String getName() {
@@ -39,7 +39,7 @@ public class Pizza {
 		this.name = name;
 	}
 
-	public List<Ingredient> getIngredients() {
+	public Ingredient[] getIngredients() {
 		return ingredients;
 	}
 
@@ -91,7 +91,6 @@ public class Pizza {
 
 	@Override
 	public String toString() {
-		return "Pizza name: " + name + ", ingredients: " + ingredients + ", pizzaType: " + pizzaType + ", quantity: "
-				+ quantity;
+		return "Pizza name: " + name + ", pizzaType: " + pizzaType + ", quantity: " + quantity;
 	}
 }

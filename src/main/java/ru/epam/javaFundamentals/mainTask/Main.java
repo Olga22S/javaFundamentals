@@ -8,8 +8,8 @@ public class Main {
 		orderForFirstClient.addPizza(getPepperoniOro(3));
 		System.out.println("Bill for client 7717:\n" + orderForFirstClient);
 		Order orderForSecondClient = new Order(4372);
-		orderForSecondClient.addPizza(getBasePzz(12));	
-		System.out.println("Bill for client 4372:\n" + orderForSecondClient);		
+		orderForSecondClient.addPizza(getBasePzz(12));
+		System.out.println("Bill for client 4372:\n" + orderForSecondClient);
 	}
 
 	private static Pizza getMargarita(int quantity) {
