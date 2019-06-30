@@ -13,28 +13,28 @@ public class Main {
 	}
 
 	private static Pizza getMargarita(int quantity) {
-		Pizza margarita = new Pizza("Margarita", PizzaType.Calzone, quantity);
-		margarita.addIngredient(Ingredient.TomatoPaste);
-		margarita.addIngredient(Ingredient.Pepper);
-		margarita.addIngredient(Ingredient.Garlic);
-		margarita.addIngredient(Ingredient.Bacon);
+		Pizza margarita = new Pizza("Margarita", PizzaType.CALZONE, quantity);
+		margarita.addIngredient(Ingredient.TOMATO_PASTE);
+		margarita.addIngredient(Ingredient.PEPPER);
+		margarita.addIngredient(Ingredient.GARLIC);
+		margarita.addIngredient(Ingredient.BACON);
 		return margarita;
 	}
 
 	private static Pizza getPepperoniOro(int quantity) {
-		Pizza pepperoniOro = new Pizza("PepperoniOro", PizzaType.Ordinary, quantity);
-		pepperoniOro.addIngredient(Ingredient.TomatoPaste);
-		pepperoniOro.addIngredient(Ingredient.Cheese);
-		pepperoniOro.addIngredient(Ingredient.Pepperoni);
-		pepperoniOro.addIngredient(Ingredient.Olives);
+		Pizza pepperoniOro = new Pizza("PepperoniOro", PizzaType.ORDINARY, quantity);
+		pepperoniOro.addIngredient(Ingredient.TOMATO_PASTE);
+		pepperoniOro.addIngredient(Ingredient.CHEESE);
+		pepperoniOro.addIngredient(Ingredient.PEPPERONI);
+		pepperoniOro.addIngredient(Ingredient.OLIVES);
 		return pepperoniOro;
 	}
 
 	private static Pizza getBasePzz(int quantity) {
-		Pizza basePzz = new Pizza("BasePZZ", PizzaType.Ordinary, quantity);
-		basePzz.addIngredient(Ingredient.Cheese);
-		basePzz.addIngredient(Ingredient.Pepperoni);
-		basePzz.addIngredient(Ingredient.TomatoPaste);
+		Pizza basePzz = new Pizza("BasePZZ", PizzaType.ORDINARY, quantity);
+		basePzz.addIngredient(Ingredient.CHEESE);
+		basePzz.addIngredient(Ingredient.PEPPERONI);
+		basePzz.addIngredient(Ingredient.TOMATO_PASTE);
 		return basePzz;
 	}
 }
